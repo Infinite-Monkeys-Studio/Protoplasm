@@ -2,6 +2,8 @@
 
 public var Boundary : int = 50; // distance from edge scrolling starts
 public var speed : int = 5;
+public var smallestOrtho : int = 10;
+public var largestOrtho : int = 60;
 
 private var theScreenWidth : int;
 private var theScreenHeight : int;
@@ -15,22 +17,29 @@ function Start() {
 function Update() {
 
 	if (Input.mousePosition.x > theScreenWidth - Boundary) {
-		transform.position.x += speed * Time.deltaTime * -transform.position.z / 10; // move on +X axis
+		transform.position.x += speed * Time.deltaTime * Camera.main.orthographicSize; // move on +X axis
 	}
 
 	if (Input.mousePosition.x < 0 + Boundary) {
-		transform.position.x -= speed * Time.deltaTime * -transform.position.z / 10; // move on -X axis
+		transform.position.x -= speed * Time.deltaTime * Camera.main.orthographicSize; // move on -X axis
 	}
 
 	if (Input.mousePosition.y > theScreenHeight - Boundary)	{
-		transform.position.y += speed * Time.deltaTime * -transform.position.z / 10; // move on +Z axis
+		transform.position.y += speed * Time.deltaTime * Camera.main.orthographicSize; // move on +Z axis
 	}
 
 	if (Input.mousePosition.y < 0 + Boundary) {
-		transform.position.y -= speed * Time.deltaTime * -transform.position.z / 10; // move on -Z axis
+		transform.position.y -= speed * Time.deltaTime * Camera.main.orthographicSize; // move on -Z axis
 	}
 	
-	transform.position.z += Input.GetAxis("Mouse ScrollWheel") * speed * 4;
+	if(Input.GetAxis("Mouse ScrollWheel") > 0 && Camera.main.orthographicSize > smallestOrtho) {
+		Camera.main.orthographicSize--;
+	}
+	
+	if(Input.GetAxis("Mouse ScrollWheel") < 0 && Camera.main.orthographicSize < largestOrtho) {
+		Camera.main.orthographicSize++;
+	}
+	
 }   
 
 function OnGUI() {

@@ -5,14 +5,16 @@ var baseSpeed : int = 5;
 
 private var selected : boolean = false;
 private var goalLocation : Vector2;
-var halo : Behaviour;
+private var moving : boolean = false;
+private var vel : Vector2;
+private var halo : Behaviour;
 
 function Start () {
 	halo = GetComponent("Halo");
 }
 
 function Update () {
-	if(Input.GetMouseButtonDown(0)){
+	if(Input.GetMouseButtonDown(1)){
 		var mousePosition : Vector2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		var hitCollider : Collider2D = Physics2D.OverlapPoint(mousePosition);
 
@@ -25,12 +27,13 @@ function Update () {
 		}
 	}
 	
-	if(Input.GetMouseButtonDown(3)){
+	if(Input.GetMouseButtonDown(0)){
 		goalLocation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		moving = true;
 	}
 	
-	if(goalLocation != void) {
-		transform.LookAt(goalLocation);
-		transform.position = transform.forward * baseSpeed;
+	if(moving) {
+		transform.position = Vector2.Lerp(goalLocation, transform.position, vel, 5);
+		if((goalLocation-transform.position).magnitude < 5) moving = false;
 	}
 }

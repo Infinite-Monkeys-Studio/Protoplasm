@@ -5,6 +5,7 @@ public var speed : int = 5;
 
 private var theScreenWidth : int;
 private var theScreenHeight : int;
+private var scale : int;
 
 function Start() {
 	theScreenWidth = Screen.width;
@@ -12,21 +13,24 @@ function Start() {
 }
 
 function Update() {
+
 	if (Input.mousePosition.x > theScreenWidth - Boundary) {
-		transform.position.x += speed * Time.deltaTime; // move on +X axis
+		transform.position.x += speed * Time.deltaTime * -transform.position.z / 10; // move on +X axis
 	}
 
 	if (Input.mousePosition.x < 0 + Boundary) {
-		transform.position.x -= speed * Time.deltaTime; // move on -X axis
+		transform.position.x -= speed * Time.deltaTime * -transform.position.z / 10; // move on -X axis
 	}
 
 	if (Input.mousePosition.y > theScreenHeight - Boundary)	{
-		transform.position.y += speed * Time.deltaTime; // move on +Z axis
+		transform.position.y += speed * Time.deltaTime * -transform.position.z / 10; // move on +Z axis
 	}
 
 	if (Input.mousePosition.y < 0 + Boundary) {
-		transform.position.y -= speed * Time.deltaTime; // move on -Z axis
+		transform.position.y -= speed * Time.deltaTime * -transform.position.z / 10; // move on -Z axis
 	}
+	
+	transform.position.z += Input.GetAxis("Mouse ScrollWheel") * speed * 4;
 }   
 
 function OnGUI() {

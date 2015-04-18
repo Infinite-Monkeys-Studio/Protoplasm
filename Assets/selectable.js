@@ -19,8 +19,8 @@ function Update () {
 
 		if(hitCollider) {
 			selectorSprite.transform.position.x = hitCollider.transform.position.x;
-			selectorSprite.transform.position.y = hitCollider.transform.position.y;  
-			Debug.Log("Hit "+hitCollider.transform.name+" x"+hitCollider.transform.position.x+" y "+hitCollider.transform.position.y);    
+			selectorSprite.transform.position.y = hitCollider.transform.position.y;
+			Debug.Log("Hit "+hitCollider.transform.name+" x"+hitCollider.transform.position.x+" y "+hitCollider.transform.position.y);  
 		}
 	}
 }

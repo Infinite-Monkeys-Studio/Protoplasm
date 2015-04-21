@@ -9,6 +9,7 @@ private var vel : Vector2;
 private var halo : Behaviour;
 private var coll : Collider2D;
 
+
 function Start () {
 	halo = GetComponent("Halo");
 	coll = GetComponent(Collider2D);

@@ -1,39 +1,47 @@
 ﻿#pragma strict
 
-var tileSelectionMarker : GameObject;
 var baseSpeed : int = 5;
+var selected : boolean = false;
 
-private var selected : boolean = false;
 private var goalLocation : Vector2;
 private var moving : boolean = false;
 private var vel : Vector2;
 private var halo : Behaviour;
+private var coll : Collider2D;
 
 function Start () {
 	halo = GetComponent("Halo");
+	coll = GetComponent(Collider2D);
+}
+
+function awake() {
+	
 }
 
 function Update () {
-	if(Input.GetMouseButtonDown(1)){
-		var mousePosition : Vector2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		var hitCollider : Collider2D = Physics2D.OverlapPoint(mousePosition);
-
-		//Debug.Log("mouse pos "+mousePosition.x+" y "+mousePosition.y+" ");
-
-
-		if(hitCollider) {
-			//Debug.Log("Hit "+hitCollider.transform.name+" x"+hitCollider.transform.position.x+" y "+hitCollider.transform.position.y);
-			halo.enabled = ! halo.enabled;
+	halo.enabled = selected;
+	
+	if(Input.GetMouseButtonDown(0)){
+		Debug.Log("cell!");
+		if(coll.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition))) {
+			selected = !selected;
+			Debug.Log("on me!");
+		} else {
+			selected = false;
 		}
 	}
 	
-	if(Input.GetMouseButtonDown(0)){
+	if(Input.GetMouseButtonDown(1) && selected){
 		goalLocation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		moving = true;
 	}
 	
+	if(Input.GetKeyDown("g")) {
+    	Instantiate(GetComponent("Transform"));
+	}
+	
 	if(moving) {
-		transform.position = Vector2.Lerp(goalLocation, transform.position, vel, 5);
-		if((goalLocation-transform.position).magnitude < 5) moving = false;
+		transform.position = Vector3.MoveTowards(transform.position, goalLocation, baseSpeed  * Time.deltaTime);
+		if((goalLocation - transform.position).magnitude < 5) moving = false;
 	}
 }

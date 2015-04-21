@@ -7,7 +7,7 @@ public var largestOrtho : int = 60;
 
 private var theScreenWidth : int;
 private var theScreenHeight : int;
-private var scale : int;
+//private var scale : int;
 
 function Start() {
 	theScreenWidth = Screen.width;

@@ -19,13 +19,10 @@ function awake() {
 }
 
 function Update () {
-	halo.enabled = selected;
-	
+	halo.enabled = selected;	
 	if(Input.GetMouseButtonDown(0)){
-		Debug.Log("cell!");
 		if(coll.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition))) {
 			selected = !selected;
-			Debug.Log("on me!");
 		} else {
 			selected = false;
 		}
@@ -43,5 +40,13 @@ function Update () {
 	if(moving) {
 		transform.position = Vector3.MoveTowards(transform.position, goalLocation, baseSpeed  * Time.deltaTime);
 		if((goalLocation - transform.position).magnitude < 5) moving = false;
+	}
+}
+
+function OnGUI() {
+	if(selected) {
+		var pos : Vector2 = Camera.main.WorldToScreenPoint(transform.position);
+		pos.y = Screen.height - pos.y;
+		GUI.Box(Rect(pos.x, pos.y, 100, 25 ), "test");
 	}
 }

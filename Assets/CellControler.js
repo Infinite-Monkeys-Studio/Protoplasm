@@ -33,8 +33,8 @@ function Update () {
 		moving = true;
 	}
 	
-	if(Input.GetKeyDown("g")) {
-    	Instantiate(GetComponent("Transform"));
+	if(Input.GetKeyDown("g") && selected) {
+    	Instantiate(GetComponent("Transform"), Vector2(Random.Range(.2, 2), Random.Range(-2, 2)) + transform.position, transform.rotation);
 	}
 	
 	if(moving) {

@@ -15,7 +15,6 @@ function Start() {
 }
 
 function Update() {
-
 	if (Input.mousePosition.x > theScreenWidth - Boundary) {
 		transform.position.x += speed * Time.deltaTime * Camera.main.orthographicSize; // move on +X axis
 	}
@@ -25,11 +24,11 @@ function Update() {
 	}
 
 	if (Input.mousePosition.y > theScreenHeight - Boundary)	{
-		transform.position.y += speed * Time.deltaTime * Camera.main.orthographicSize; // move on +Z axis
+		transform.position.y += speed * Time.deltaTime * Camera.main.orthographicSize; // move on +Y axis
 	}
 
 	if (Input.mousePosition.y < 0 + Boundary) {
-		transform.position.y -= speed * Time.deltaTime * Camera.main.orthographicSize; // move on -Z axis
+		transform.position.y -= speed * Time.deltaTime * Camera.main.orthographicSize; // move on -Y axis
 	}
 	
 	if(Input.GetAxis("Mouse ScrollWheel") > 0 && Camera.main.orthographicSize > smallestOrtho) {

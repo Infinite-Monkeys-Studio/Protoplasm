@@ -10,12 +10,15 @@ PLEASE ADD MORE IF YOU CAN!
 ### To Do:
 * [ ] Art work  
   * [ ] map  
-    * [ ] algi  
+    * [ ] algae  
     * [ ] acid  
-    * [ ] matter  
+    * [ ] chemicals
+    * [ ] bacteria
   * [ ] props  
-  * [X] cells  
-* [ ] scirpts  
+  * [ ] cells (only placeholders done so far)
+    * [ ] animations (do in spriter?)
+  * [ ] GUI
+* [ ] scripts  
   * [ ] controls  
     * [ ] select multiple  
     * [ ] commands 
@@ -25,5 +28,7 @@ PLEASE ADD MORE IF YOU CAN!
     * [ ] path finding  
     * [ ] Repeated tasks  
     * [ ] idle(wander)  
+* [ ] Multiplayer??? (long term goal)
+* [ ] Design maps
 * [ ] This is the format
 

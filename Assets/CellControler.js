@@ -15,16 +15,12 @@ function Start () {
 	coll = GetComponent(Collider2D);
 }
 
-function awake() {
-	
-}
-
 function Update () {
 	halo.enabled = selected;	
 	if(Input.GetMouseButtonDown(0)){
 		if(coll.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition))) {
 			selected = !selected;
-		} else {
+		} else if(!Input.GetKey(KeyCode.LeftShift)) {
 			selected = false;
 		}
 	}

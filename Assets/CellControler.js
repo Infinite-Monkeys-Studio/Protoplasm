@@ -8,11 +8,13 @@ private var moving : boolean = false;
 private var vel : Vector2;
 private var halo : Behaviour;
 private var coll : Collider2D;
+private var hitpoints : int;
 
 
 function Start () {
 	halo = GetComponent("Halo");
 	coll = GetComponent(Collider2D);
+	hitpoints = 20;
 }
 
 function Update () {
@@ -44,6 +46,6 @@ function OnGUI() {
 	if(selected) {
 		var pos : Vector2 = Camera.main.WorldToScreenPoint(transform.position);
 		pos.y = Screen.height - pos.y;
-		GUI.Box(Rect(pos.x, pos.y, 100, 25 ), "test");
+		GUI.Box(Rect(pos.x, pos.y, 100, 25 ), "Health: " + hitpoints );
 	}
 }

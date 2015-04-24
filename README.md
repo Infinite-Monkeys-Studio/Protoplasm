@@ -1,6 +1,5 @@
 # Protoplasm  
-Cell warfare  
-*add synopsis*  
+Cell warfare *add synopsis*  
 ## Game notes  
 *Please add game design notes here*  
 ## Playable Versions  
